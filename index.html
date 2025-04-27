@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Sistema de Login</title>
+
+    <!-- 🌟 Agregamos estilo simple -->
+    <style>
+        body {
+            background: #f0f2f5;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .box {
+            background: white;
+            padding: 20px 40px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            border: none;
+            background: #007bff;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h1>Mini Sistema de Login</h1>
+    <button onclick="iniciarSesion()">Iniciar Sesión</button>
+    <button onclick="registrarse()">Registrarse</button>
+</div>
+
+<script>
+// 🌟 Base de usuarios
+const usuarios = [
+    { id: 1, nombre: 'Juan', password: '1234' },
+    { id: 2, nombre: 'Maria', password: '5678' },
+    { id: 3, nombre: 'Pedro', password: 'abcd' },
+];
+
+// 🌟 Función para iniciar sesión
+function iniciarSesion() {
+    const usuario = prompt('Ingresa tu usuario');
+    const password = prompt('Ingresa tu contraseña');
+
+    if (usuario === null || password === null) {
+        alert('Usuario o contraseña no válidos');
+        return;
+    }
+
+    const usuarioEncontrado = usuarios.find(user => user.nombre === usuario && user.password === password);
+
+    if (usuarioEncontrado) {
+        alert(`Bienvenido ${usuarioEncontrado.nombre}`);
+    } else {
+        alert('Usuario o contraseña incorrectos');
+    }
+}
+
+// 🌟 Función para registrarse
+function registrarse() {
+    const nuevoUsuario = prompt('Ingresa un nuevo usuario');
+    const nuevaPassword = prompt('Ingresa una nueva contraseña');
+
+    if (nuevoUsuario === null || nuevaPassword === null) {
+        alert('Usuario o contraseña no válidos');
+        return;
+    }
+
+    usuarios.push({ id: usuarios.length + 1, nombre: nuevoUsuario, password: nuevaPassword });
+    alert(`Usuario ${nuevoUsuario} registrado con éxito`);
+}
+</script>
+
+</body>
+</html>
